@@ -1,6 +1,5 @@
 //import icons from '../img/icons.svg'; // parcel 1
 import icons from 'url:../img/icons.svg'; // parcel 2
-console.log(icons);
 
 const recipeContainer = document.querySelector('.recipe');
 
@@ -15,16 +14,27 @@ const timeout = function (s) {
 // https://forkify-api.herokuapp.com/v2
 
 ////////////////////////////////////
+const renderSpinner = function (parentEl) {
+  const spinner = `
+    <div class="spinner">
+      <svg>
+        <use href="${icons}#icon-loader"></use>
+      </svg>
+    </div> 
+`;
+  parentEl.innerHTML = '';
+  parentEl.insertAdjacentHTML('afterbegin', spinner);
+};
+
 const showRecipe = async function () {
   try {
     // 1) Loading recipe
+    renderSpinner(recipeContainer);
     const res = await fetch(
       'https://forkify-api.herokuapp.com/api/v2/recipes/5ed6604591c37cdc054bcc40'
       // 'https://forkify-api.herokuapp.com/api/v2/recipes/5ed6604591c37cdc054bc886'
     );
     const data = await res.json();
-    console.log(res);
-    console.log(data);
 
     let { recipe } = data.data;
     recipe = {
@@ -37,7 +47,6 @@ const showRecipe = async function () {
       sourceUrl: recipe.source_url,
       title: recipe.title,
     };
-    console.log(recipe);
 
     if (!res.ok) {
       throw new Error(`${data.message} (${res.status})`);
