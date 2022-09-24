@@ -17,7 +17,9 @@
   },
   "homepage": "https://github.com/devBayo/Forkify#readme",
   "dependencies": {
-    "parcel": "^2.7.0"
+    "core-js": "^3.25.2",
+    "parcel": "^2.7.0",
+    "regenerator-runtime": "^0.13.9"
   },
   "devDependencies": {
     "@parcel/transformer-sass": "^2.7.0"
