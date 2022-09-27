@@ -4,16 +4,8 @@ import { Fraction } from 'fractional';
 
 class RecipeView extends View {
   _parentEl = document.querySelector('.recipe');
-  _data;
   _errorMessage = "We couldn't find that recipe. Please try another one!";
   _message;
-
-  render(data) {
-    this._data = data;
-    const markup = this._generateMarkup();
-    this._clear();
-    this._parentEl.insertAdjacentHTML('afterbegin', markup);
-  }
 
   renderMessage(message = this._message) {
     const markup = `<div class="message">
