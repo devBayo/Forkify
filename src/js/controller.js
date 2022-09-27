@@ -41,7 +41,8 @@ const controlSearchResults = async function () {
     resultsViews.render(model.state.search.results);
   } catch (err) {
     // handles error
-    console.warn(err.message);
+    // console.warn(err.message);
+    resultsViews.renderError();
   }
 };
 
