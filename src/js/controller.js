@@ -24,16 +24,21 @@ const controlRecipe = async function () {
 
 const controlSearchResults = async function () {
   try {
+    // Get search query
     const searchQuery = searchView.getSearchQuery();
+    searchView.clearSearchField();
     if (!searchQuery) return;
 
+    // Load search results
     await model.loadSearchResults(searchQuery);
     console.log(model.state.search.results);
   } catch (err) {
+    // handles error
     console.warn(err.message);
   }
 };
 
+// Subscribers
 const init = function () {
   recipeView.addRenderHandler(controlRecipe);
   searchView.addSearchHandler(controlSearchResults);
