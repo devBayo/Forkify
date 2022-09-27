@@ -26,7 +26,6 @@ const controlSearchResults = async function () {
   try {
     // Get search query
     const searchQuery = searchView.getSearchQuery();
-    searchView.clearSearchField();
     if (!searchQuery) return;
 
     // Load search results
