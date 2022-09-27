@@ -5,6 +5,7 @@ import { Fraction } from 'fractional';
 class RecipeView {
   #parentEl = document.querySelector('.recipe');
   #data;
+  #errorMessage = "We couldn't find that recipe. Please try another one!";
 
   render(data) {
     this.#data = data;
@@ -25,7 +26,7 @@ class RecipeView {
     this.#parentEl.insertAdjacentHTML('afterbegin', spinner);
   }
 
-  renderError(message) {
+  renderError(message = this.#errorMessage) {
     const errorMarkup = `<div class="error">
         <div>
           <svg>
