@@ -4,6 +4,7 @@ export default class View {
   _data;
 
   render(data) {
+    // checks if data is from search field then short circuit if data is empty
     if(Array.isArray(data) && data.length === 0) return this.renderError()
     this._data = data;
     const markup = this._generateMarkup();
