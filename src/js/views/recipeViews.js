@@ -25,6 +25,20 @@ class RecipeView {
     this.#parentEl.insertAdjacentHTML('afterbegin', spinner);
   }
 
+  renderError(message) {
+    const errorMarkup = `<div class="error">
+        <div>
+          <svg>
+            <use href="${icons}#icon-alert-triangle"></use>
+          </svg>
+        </div>
+        <p>${message}</p>
+      </div>`;
+
+    this.#clear();
+    this.#parentEl.insertAdjacentHTML('afterbegin', errorMarkup);
+  }
+
   addHandlerRender(handler) {
     // show event on load && hashchange event
     ['hashchange', 'load'].forEach(event =>

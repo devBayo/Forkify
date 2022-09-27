@@ -22,10 +22,11 @@ const controlRecipe = async function () {
     recipeView.render(model.state.recipe);
   } catch (err) {
     console.warn(err);
+    recipeView.renderError(err.message);
   }
 };
 
 const init = function () {
   recipeView.addHandlerRender(controlRecipe);
 };
-init()
+init();
