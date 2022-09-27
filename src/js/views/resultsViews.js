@@ -3,6 +3,8 @@ import icons from 'url:../../img/icons.svg';
 
 class ResultsView extends View {
   _parentEl = document.querySelector('.results');
+  _errorMessage =
+    "We couldn't find recipes for that query. Please try another one!";
 
   _generateMarkup() {
     return this._data.map(this._generateMarkupPreview).join('');
