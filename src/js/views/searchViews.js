@@ -5,13 +5,11 @@ class SearchView {
     return this.#parentEl.querySelector('.search__field').value;
   }
 
-  addHandlerRender(handler) {
-    this.#parentEl
-      .querySelector('.search__btn')
-      .addEventListener('click', function (e) {
-        e.preventDefault();
-        handler();
-      });
+  addSearchHandler(handler) {
+    this.#parentEl.addEventListener('submit', function (e) {
+      e.preventDefault();
+      handler();
+    });
   }
 
   clearSearchField() {

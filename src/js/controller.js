@@ -35,7 +35,7 @@ const controlSearchResults = async function () {
 };
 
 const init = function () {
-  recipeView.addHandlerRender(controlRecipe);
-  searchView.addHandlerRender(controlSearchResults);
+  recipeView.addRenderHandler(controlRecipe);
+  searchView.addSearchHandler(controlSearchResults);
 };
 init();

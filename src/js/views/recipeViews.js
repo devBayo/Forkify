@@ -55,7 +55,7 @@ class RecipeView {
     this.#parentEl.insertAdjacentHTML('afterbegin', markup);
   }
 
-  addHandlerRender(handler) {
+  addRenderHandler(handler) {
     // show event on load && hashchange event
     ['hashchange', 'load'].forEach(event =>
       window.addEventListener(event, handler)
