@@ -6,7 +6,7 @@ import resultsViews from './views/resultsViews.js';
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
 
-module?.hot?.accept();
+// module?.hot?.accept();
 
 const controlRecipe = async function () {
   try {
