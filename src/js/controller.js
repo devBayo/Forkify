@@ -5,6 +5,8 @@ import searchView from './views/searchViews.js';
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
 
+// module?.hot?.accept();
+
 const controlRecipe = async function () {
   try {
     const id = window.location.hash.slice(1);
