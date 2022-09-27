@@ -28,7 +28,7 @@ const controlRecipe = async function () {
 const controlSearchResults = async function () {
   try {
     // Load spinner
-    resultsViews.renderSpinner()
+    resultsViews.renderSpinner();
 
     // Get search query
     const searchQuery = searchView.getSearchQuery();
@@ -39,6 +39,7 @@ const controlSearchResults = async function () {
 
     // Render search results
     console.log(model.state.search.results);
+    resultsViews.render(model.state.search.results);
   } catch (err) {
     // handles error
     console.warn(err.message);
