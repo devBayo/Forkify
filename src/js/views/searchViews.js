@@ -11,7 +11,6 @@ class SearchView {
       .addEventListener('click', function (e) {
         e.preventDefault();
         handler();
-        this.clearSearchField();
       });
   }
 

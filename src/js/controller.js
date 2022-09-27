@@ -5,10 +5,6 @@ import searchView from './views/searchViews.js';
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
 
-// https://forkify-api.herokuapp.com/v2
-
-////////////////////////////////////
-
 const controlRecipe = async function () {
   try {
     const id = window.location.hash.slice(1);
@@ -29,6 +25,8 @@ const controlRecipe = async function () {
 const controlSearchResults = async function () {
   try {
     const searchQuery = searchView.getSearchQuery();
+    if (!searchQuery) return;
+
     await model.loadSearchResults(searchQuery);
     console.log(model.state.search.results);
   } catch (err) {
