@@ -61,11 +61,10 @@ class PaginationView extends View {
     this._parentEl.addEventListener(
       'click',
       function (e) {
-        if (!e.target.closest('button')) return;
         const button = e.target.closest('button');
-        console.log(button);
+        if (!button) return;
+
         if (button.classList.contains('pagination__btn--next')) {
-          console.log(this);
           return handler(this._data.currentPage + 1);
         }
         handler(this._data.currentPage - 1);
