@@ -39,7 +39,7 @@ const controlSearchResults = async function () {
 
     // Render search results
     // resultsViews.render(model.state.search.results);
-    resultsViews.render(model.loadSearchResultsPerPage(1));
+    resultsViews.render(model.loadSearchResultsPerPage());
   } catch (err) {
     // handles error
     // console.warn(err.message);
