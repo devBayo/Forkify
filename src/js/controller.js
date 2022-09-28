@@ -7,8 +7,6 @@ import paginationView from './views/paginationViews.js';
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
 
-// module?.hot?.accept();
-
 const controlRecipe = async function () {
   try {
     const id = window.location.hash.slice(1);
@@ -39,8 +37,7 @@ const controlSearchResults = async function () {
     await model.loadSearchResults(searchQuery);
 
     // 4) Render search results
-    // resultsViews.render(model.state.search.results);
-    resultsViews.render(model.loadSearchResultsPerPage(3));
+    resultsViews.render(model.loadSearchResultsPerPage());
 
     // 5) render initial pagination button
     paginationView.render(model.state.search);
