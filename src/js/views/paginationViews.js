@@ -24,12 +24,33 @@ class PaginationView extends View {
 
     // Last page
     if (currentPage === totalPages && totalPages > 1) {
-      return 'Last Page';
+      return `
+        <button class="btn--inline pagination__btn--prev">
+          <svg class="search__icon">
+            <use href="${icons}#icon-arrow-left"></use>
+          </svg>
+          <span>Page ${currentPage - 1}</span>
+        </button>
+      `;
     }
 
     // Other pages
     if (currentPage < totalPages) {
-      return 'Other pages';
+      return `
+          <button class="btn--inline pagination__btn--next">
+            <span>Page ${currentPage + 1}</span>
+            <svg class="search__icon">
+              <use href="${icons}#icon-arrow-right"></use>
+            </svg>
+          </button>
+
+          <button class="btn--inline pagination__btn--prev">
+            <svg class="search__icon">
+              <use href="${icons}#icon-arrow-left"></use>
+            </svg>
+            <span>Page ${currentPage - 1}</span>
+         </button>
+    `;
     }
 
     // Page 1 and no other pages
