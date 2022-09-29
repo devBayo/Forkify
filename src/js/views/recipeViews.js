@@ -33,7 +33,7 @@ class RecipeView extends View {
       const button = e.target.closest('.btn--tiny');
       if (!button) return;
       const { newServings } = button.dataset;
-      handler(+newServings);
+      if (+newServings > 0) handler(+newServings);
     });
   }
 
@@ -69,9 +69,7 @@ class RecipeView extends View {
 
         <div class="recipe__info-buttons">
           <button data-new-servings=${
-            this._data.servings > 1
-              ? this._data.servings - 1
-              : this._data.servings
+            this._data.servings - 1
           } class="btn--tiny btn--decrease-servings">
             <svg>
               <use href="${icons}#icon-minus-circle"></use>
