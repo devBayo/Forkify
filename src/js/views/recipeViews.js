@@ -32,8 +32,8 @@ class RecipeView extends View {
     this._parentEl.addEventListener('click', function (e) {
       const button = e.target.closest('.btn--tiny');
       if (!button) return;
-      const newServings = +button.dataset.newServings;
-      handler(newServings);
+      const { newServings } = button.dataset;
+      handler(+newServings);
     });
   }
 
