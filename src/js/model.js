@@ -26,6 +26,7 @@ export const loadRecipe = async function (id) {
       sourceUrl: recipe.source_url,
       title: recipe.title,
     };
+    console.log(state.recipe);
   } catch (err) {
     throw err;
   }
@@ -55,4 +56,14 @@ export const loadSearchResultsPerPage = function (page = 1) {
   const end = start + state.search.resultPerPage;
 
   return state.search.results.slice(start, end);
+};
+
+export const updateRecipeServings = function (newServings) {
+  state.recipe.ingredients.forEach(
+    ingredient =>
+      (ingredient.quantity =
+        (ingredient.quantity * newServings) / state.recipe.servings)
+  );
+
+  state.recipe.servings = newServings;
 };
