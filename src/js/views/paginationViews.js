@@ -13,7 +13,9 @@ class PaginationView extends View {
     // Page 1 and there are other pages
     if (currentPage === 1 && totalPages > 1) {
       return `
-        <button class="btn--inline pagination__btn--next">
+        <button data-goto-page=${
+          currentPage + 1
+        } class="btn--inline pagination__btn--next">
           <span>Page ${currentPage + 1}</span>
           <svg class="search__icon">
             <use href="${icons}#icon-arrow-right"></use>
@@ -25,7 +27,9 @@ class PaginationView extends View {
     // Last page
     if (currentPage === totalPages && totalPages > 1) {
       return `
-        <button class="btn--inline pagination__btn--prev">
+        <button data-goto-page=${
+          currentPage - 1
+        } class="btn--inline pagination__btn--prev">
           <svg class="search__icon">
             <use href="${icons}#icon-arrow-left"></use>
           </svg>
@@ -37,14 +41,18 @@ class PaginationView extends View {
     // Other pages
     if (currentPage < totalPages) {
       return `
-          <button class="btn--inline pagination__btn--next">
+          <button data-goto-page=${
+            currentPage + 1
+          } class="btn--inline pagination__btn--next">
             <span>Page ${currentPage + 1}</span>
             <svg class="search__icon">
               <use href="${icons}#icon-arrow-right"></use>
             </svg>
           </button>
 
-          <button class="btn--inline pagination__btn--prev">
+          <button data-goto-page=${
+            currentPage - 1
+          } class="btn--inline pagination__btn--prev">
             <svg class="search__icon">
               <use href="${icons}#icon-arrow-left"></use>
             </svg>
@@ -58,18 +66,13 @@ class PaginationView extends View {
   }
 
   addPageHandler(handler) {
-    this._parentEl.addEventListener(
-      'click',
-      function (e) {
-        const button = e.target.closest('button');
-        if (!button) return;
+    this._parentEl.addEventListener('click', function (e) {
+      const button = e.target.closest('button');
+      if (!button) return;
 
-        if (button.classList.contains('pagination__btn--next')) {
-          return handler(this._data.currentPage + 1);
-        }
-        handler(this._data.currentPage - 1);
-      }.bind(this)
-    );
+      const { gotoPage } = button.dataset;
+      handler(+gotoPage);
+    });
   }
 }
 export default new PaginationView();
