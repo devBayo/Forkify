@@ -1,4 +1,4 @@
-import { API_URL, RESULT_PER_PAGE } from './config.js';
+import { API_URL, RESULT_PER_PAGE, DEFAULT_BOOKMARK_VALUE } from './config.js';
 import { getJSON } from './helper.js';
 
 export const state = {
@@ -26,7 +26,7 @@ export const loadRecipe = async function (id) {
       servings: recipe.servings,
       sourceUrl: recipe.source_url,
       title: recipe.title,
-      bookmarked: false,
+      bookmarked: DEFAULT_BOOKMARK_VALUE,
     };
     console.log(state.recipe);
   } catch (err) {
