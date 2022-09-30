@@ -18,6 +18,9 @@ const controlRecipe = async function () {
 
     // update result view(add active tag)
     resultsViews.update(model.loadSearchResultsPerPage());
+    
+    // update bookmark bar
+    bookmarkViews.update([...model.state.bookmarks].reverse());
 
     //1) Loading recipe
     await model.loadRecipe(id);
@@ -25,8 +28,6 @@ const controlRecipe = async function () {
     // 2) Rendering recipe
     recipeView.render(model.state.recipe);
 
-    // update bookmark bar
-    bookmarkViews.update([...model.state.bookmarks].reverse());
   } catch (err) {
     recipeView.renderError();
   }
