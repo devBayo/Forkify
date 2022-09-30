@@ -77,7 +77,7 @@ const controlUpdateBookmark = function () {
   recipeView.update(model.state.recipe);
 
   // add to bookmark bar
-  bookmarkViews.render(model.state.bookmarks);
+  bookmarkViews.render([...model.state.bookmarks].reverse);
 };
 
 // Subscribers
