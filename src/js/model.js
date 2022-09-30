@@ -72,7 +72,11 @@ export const updateRecipeServings = function (newServings) {
 
 export const updateBookmark = function () {
   state.recipe.bookmarked = !state.recipe.bookmarked;
-  if (state.recipe.bookmarked) state.bookmarks.push(state.recipe);
 
-  console.log(state.bookmarks);
+  const bookmarkIndex = state.bookmarks.findIndex(
+    bookmark => bookmark.id === state.recipe.id
+  );
+
+  if (state.recipe.bookmarked) state.bookmarks.push(state.recipe);
+  else state.bookmarks.splice(bookmarkIndex, 1);
 };
