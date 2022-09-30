@@ -26,7 +26,7 @@ const controlRecipe = async function () {
     recipeView.render(model.state.recipe);
 
     // update bookmark bar
-    bookmarkViews.update(model.state.bookmarks);
+    bookmarkViews.update([...model.state.bookmarks].reverse());
   } catch (err) {
     recipeView.renderError();
   }
@@ -77,7 +77,7 @@ const controlUpdateBookmark = function () {
   recipeView.update(model.state.recipe);
 
   // add to bookmark bar
-  bookmarkViews.render([...model.state.bookmarks].reverse);
+  bookmarkViews.render([...model.state.bookmarks].reverse());
 };
 
 // Subscribers
