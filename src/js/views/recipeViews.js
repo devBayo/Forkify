@@ -38,7 +38,11 @@ class RecipeView extends View {
   }
 
   addUpdateBookmarkHandler(handler) {
-    this._parentEl.addEventListener('click', handler);
+    this._parentEl.addEventListener('click', function (e) {
+      const bookmarkButton = e.target.closest('.btn--round');
+      if (!bookmarkButton) return;
+      handler();
+    });
   }
 
   _generateMarkup() {
