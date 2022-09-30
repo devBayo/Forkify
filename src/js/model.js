@@ -1,4 +1,4 @@
-import { API_URL, RESULT_PER_PAGE, DEFAULT_BOOKMARK_VALUE } from './config.js';
+import { API_URL, RESULT_PER_PAGE } from './config.js';
 import { getJSON } from './helper.js';
 
 export const state = {
@@ -32,9 +32,8 @@ export const loadRecipe = async function (id) {
       bookmark => bookmark.id === state.recipe.id
     );
 
-    state.recipe.bookmarked = isBookmarked
-      ? isBookmarked
-      : DEFAULT_BOOKMARK_VALUE;
+    // Sets bookmarked property to true or false
+    state.recipe.bookmarked = isBookmarked;
 
     console.log(state.recipe);
   } catch (err) {
