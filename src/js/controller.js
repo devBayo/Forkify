@@ -3,6 +3,7 @@ import recipeView from './views/recipeViews.js';
 import searchView from './views/searchViews.js';
 import resultsViews from './views/resultsViews.js';
 import paginationView from './views/paginationViews.js';
+import bookmarkViews from './views/bookmarkViews.js';
 
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
@@ -23,6 +24,9 @@ const controlRecipe = async function () {
 
     // 2) Rendering recipe
     recipeView.render(model.state.recipe);
+
+    // update bookmark bar
+    bookmarkViews.update(model.state.bookmarks);
   } catch (err) {
     recipeView.renderError();
   }
@@ -71,6 +75,9 @@ const controlUpdateBookmark = function () {
 
   // render the updated recipe
   recipeView.update(model.state.recipe);
+
+  // add to bookmark bar
+  bookmarkViews.render(model.state.bookmarks);
 };
 
 // Subscribers
