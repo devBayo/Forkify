@@ -57,7 +57,8 @@ const controlRecipeServings = function (newServings) {
   model.updateRecipeServings(newServings);
 
   // 2) Render the updated recipe
-  recipeView.render(model.state.recipe);
+  // recipeView.render(model.state.recipe);
+  recipeView.update(model.state.recipe);
 };
 
 // Subscribers
