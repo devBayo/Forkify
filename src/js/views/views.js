@@ -5,11 +5,20 @@ export default class View {
 
   render(data) {
     // checks if data is from search field then short circuit if data is empty
-    if(Array.isArray(data) && data.length === 0) return this.renderError()
+    if (Array.isArray(data) && data.length === 0) return this.renderError();
     this._data = data;
     const markup = this._generateMarkup();
     this._clear();
     this._parentEl.insertAdjacentHTML('afterbegin', markup);
+  }
+
+  update(data) {
+    if (Array.isArray(data) && data.length === 0) return this.renderError();
+    this._data = data;
+    const newMarkup = this._generateMarkup();
+    const newDOM = document.createRange().createContextualFragment(newMarkup);
+    const newElements = newDOM.querySelectorAll('*');
+    console.log(newElements);
   }
 
   renderSpinner() {
