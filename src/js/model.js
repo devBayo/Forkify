@@ -26,8 +26,16 @@ export const loadRecipe = async function (id) {
       servings: recipe.servings,
       sourceUrl: recipe.source_url,
       title: recipe.title,
-      bookmarked: DEFAULT_BOOKMARK_VALUE,
     };
+
+    const isBookmarked = state.bookmarks.some(
+      bookmark => bookmark.id === state.recipe.id
+    );
+
+    isBookmarked
+      ? (state.recipe.bookmarked = isBookmarked)
+      : DEFAULT_BOOKMARK_VALUE;
+
     console.log(state.recipe);
   } catch (err) {
     throw err;
@@ -79,4 +87,5 @@ export const updateBookmark = function () {
 
   if (state.recipe.bookmarked) state.bookmarks.push(state.recipe);
   else state.bookmarks.splice(bookmarkIndex, 1);
+  console.log(state.bookmarks);
 };
