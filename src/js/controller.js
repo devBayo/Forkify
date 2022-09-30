@@ -77,6 +77,8 @@ const controlUpdateBookmark = function () {
 const init = function () {
   recipeView.addRenderHandler(controlRecipe);
   recipeView.addUpdateServingsHandler(controlRecipeServings);
+  recipeView.addUpdateBookmarkHandler(controlUpdateBookmark);
+
   searchView.addSearchHandler(controlSearchResults);
   paginationView.addPageHandler(controlPagination);
 };
