@@ -87,5 +87,4 @@ export const updateBookmark = function () {
 
   if (state.recipe.bookmarked) state.bookmarks.push(state.recipe);
   else state.bookmarks.splice(bookmarkIndex, 1);
-  console.log(state.bookmarks);
 };
