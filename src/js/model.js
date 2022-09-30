@@ -32,8 +32,8 @@ export const loadRecipe = async function (id) {
       bookmark => bookmark.id === state.recipe.id
     );
 
-    isBookmarked
-      ? (state.recipe.bookmarked = isBookmarked)
+    state.recipe.bookmarked = isBookmarked
+      ? isBookmarked
       : DEFAULT_BOOKMARK_VALUE;
 
     console.log(state.recipe);
