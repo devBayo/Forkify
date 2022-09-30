@@ -12,7 +12,11 @@ const controlRecipe = async function () {
     const id = window.location.hash.slice(1);
     if (!id) return;
 
+    // render spinner while loading recipe
     recipeView.renderSpinner();
+
+    // update result view(add active tag)
+    resultsViews.update(model.loadSearchResultsPerPage())
 
     //1) Loading recipe
     await model.loadRecipe(id);
