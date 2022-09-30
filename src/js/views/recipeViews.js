@@ -37,6 +37,10 @@ class RecipeView extends View {
     });
   }
 
+  updateBookmark() {
+    
+  }
+
   _generateMarkup() {
     return `
       <figure class="recipe__fig">
@@ -89,7 +93,7 @@ class RecipeView extends View {
       </div>
       <button class="btn--round">
         <svg class="">
-          <use href="${icons}#icon-bookmark-fill"></use>
+          <use href="${icons}#icon-bookmark${'-fill'}"></use>
         </svg>
       </button>
     </div>
