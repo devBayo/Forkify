@@ -15,9 +15,15 @@ export default class View {
   update(data) {
     this._data = data;
     const newMarkup = this._generateMarkup();
+
+    // Generate virtual DOM
     const newDOM = document.createRange().createContextualFragment(newMarkup);
     const newElements = Array.from(newDOM.querySelectorAll('*'));
+
+    // Currents elements in page
     const currentElements = Array.from(this._parentEl.querySelectorAll('*'));
+
+    // The logic
     newElements.forEach((newEl, i) => {
       const currentEl = currentElements[i];
 
