@@ -86,4 +86,17 @@ export const updateBookmark = function () {
 
   if (state.recipe.bookmarked) state.bookmarks.push(state.recipe);
   else state.bookmarks.splice(bookmarkIndex, 1);
+
+  storeBookmark();
 };
+
+const storeBookmark = function () {
+  localStorage.setItem('bookmarks', JSON.stringify(state.bookmarks));
+};
+
+const loadBookmark = function () {
+  const storedBookmarks = JSON.parse(localStorage.getItem('bookmarks'));
+  if (storedBookmarks) state.bookmarks = storedBookmarks;
+};
+
+loadBookmark();

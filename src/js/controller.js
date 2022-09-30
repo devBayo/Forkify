@@ -80,8 +80,13 @@ const controlUpdateBookmark = function () {
   bookmarkViews.render([...model.state.bookmarks].reverse());
 };
 
+const controlLoadBookmark = function () {
+  bookmarkViews.render(model.state.bookmarks);
+};
+
 // Subscribers
 const init = function () {
+  bookmarkViews.addLoadBookmarkHandler(controlLoadBookmark);
   recipeView.addRenderHandler(controlRecipe);
   recipeView.addUpdateServingsHandler(controlRecipeServings);
   recipeView.addUpdateBookmarkHandler(controlUpdateBookmark);
