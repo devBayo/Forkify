@@ -40,7 +40,6 @@ export const loadRecipe = async function (id) {
     // Sets bookmarked property to true or false
     state.recipe.bookmarked = isBookmarked;
 
-    console.log(state.recipe);
   } catch (err) {
     throw err;
   }
