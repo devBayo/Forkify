@@ -8,7 +8,7 @@ export default class View {
     if (Array.isArray(data) && data.length === 0) return this.renderError();
     this._data = data;
     const markup = this._generateMarkup();
-    this._clear();
+    this.clear();
     this._parentEl.insertAdjacentHTML('afterbegin', markup);
   }
 
@@ -50,11 +50,11 @@ export default class View {
         </svg>
       </div> 
   `;
-    this._clear();
+    this.clear();
     this._parentEl.insertAdjacentHTML('afterbegin', spinner);
   }
 
-  _clear() {
+  clear() {
     this._parentEl.innerHTML = '';
   }
 
@@ -68,7 +68,7 @@ export default class View {
         <p>${message}</p>
       </div>`;
 
-    this._clear();
+    this.clear();
     this._parentEl.insertAdjacentHTML('afterbegin', markup);
   }
 
@@ -82,7 +82,7 @@ export default class View {
         <p>${message}</p>
       </div>`;
 
-    this._clear();
+    this.clear();
     this._parentEl.insertAdjacentHTML('afterbegin', markup);
   }
 }
