@@ -1,5 +1,5 @@
-import { API_URL, RESULT_PER_PAGE } from './config.js';
-import { getJSON } from './helper.js';
+import { API_KEY, API_URL, RESULT_PER_PAGE } from './config.js';
+import { getJSON, sendJSON } from './helper.js';
 
 export const state = {
   recipe: {},
@@ -12,21 +12,26 @@ export const state = {
   bookmarks: [],
 };
 
+const createRecipeObject = function (data) {
+  const { recipe } = data.data;
+  return {
+    id: recipe.id,
+    cookingTime: recipe.cooking_time,
+    imageUrl: recipe.image_url,
+    ingredients: recipe.ingredients,
+    publisher: recipe.publisher,
+    servings: recipe.servings,
+    sourceUrl: recipe.source_url,
+    title: recipe.title,
+    ...(recipe.key && { key: recipe.key }),
+  };
+};
+
 export const loadRecipe = async function (id) {
   try {
     const data = await getJSON(`${API_URL}/${id}`);
 
-    const { recipe } = data.data;
-    state.recipe = {
-      id: recipe.id,
-      cookingTime: recipe.cooking_time,
-      imageUrl: recipe.image_url,
-      ingredients: recipe.ingredients,
-      publisher: recipe.publisher,
-      servings: recipe.servings,
-      sourceUrl: recipe.source_url,
-      title: recipe.title,
-    };
+    state.recipe = createRecipeObject(data);
 
     const isBookmarked = state.bookmarks.some(
       bookmark => bookmark.id === state.recipe.id
@@ -119,14 +124,15 @@ export const uploadRecipe = async function (newRecipe) {
 
     const recipe = {
       cooking_time: newRecipe.cookingTime,
-      image: newRecipe.imageUrl,
+      image_url: newRecipe.image,
       publisher: newRecipe.publisher,
       servings: newRecipe.servings,
       source_url: newRecipe.sourceUrl,
       title: newRecipe.title,
       ingredients,
     };
-    console.log(recipe);
+    const data = await sendJSON(`${API_URL}?key=${API_KEY}`, recipe);
+    state.recipe = createRecipeObject(data);
   } catch (err) {
     throw err;
   }
