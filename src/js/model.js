@@ -94,9 +94,30 @@ const storeBookmark = function () {
   localStorage.setItem('bookmarks', JSON.stringify(state.bookmarks));
 };
 
-const loadBookmark = function () {
+const loadStoredBookmark = function () {
   const storedBookmarks = JSON.parse(localStorage.getItem('bookmarks'));
   if (storedBookmarks) state.bookmarks = storedBookmarks;
 };
 
-loadBookmark();
+loadStoredBookmark();
+
+export const uploadRecipe = async function (newRecipe) {
+  try {
+    const ingredients = Object.entries(newRecipe)
+      .filter(entry => entry[0].startsWith('ingredient') && entry[1] !== '')
+      .map(ing => {
+        const ingArr = ing[1].replaceAll(' ', '').split(',');
+        if (ingArr.length !== 3) {
+          throw new Error(
+            'Wrong ingredient Format! Please use the correct Format :)'
+          );
+        }
+
+        const [quantity, unit, description] = ingArr;
+        return { quantity: quantity ? +quantity : null, unit, description };
+      });
+    console.log(ingredients);
+  } catch (err) {
+    throw err;
+  }
+};
