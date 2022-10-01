@@ -94,16 +94,17 @@ const controlAddRecipe = async function (newRecipe) {
     // 2) Upload recipe
     await model.uploadRecipe(newRecipe);
 
-    // 3) Add recipe to bookmark
-    controlUpdateBookmark();
-
-    // 4) Render success message
-    addRecipeView.renderMessage();
-
-    // 5) Render recipe
+    // 3) Render recipe
+    window.location.hash = model.state.recipe.id;
     recipeView.render(model.state.recipe);
 
-    // 6) Cloase modal
+    // 4) Add recipe to bookmark
+    controlUpdateBookmark();
+
+    // 5) Render success message
+    addRecipeView.renderMessage();
+
+    // 6) Close modal
     setTimeout(() => {
       addRecipeView.toggleWindow();
     }, MODAL_CLOSE_SEC * 1000);
