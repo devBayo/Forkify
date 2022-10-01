@@ -19,7 +19,9 @@ const controlRecipe = async function () {
     recipeView.renderSpinner();
 
     // update result view(add active tag)
-    resultsViews.update(model.loadSearchResultsPerPage());
+    resultsViews.update(
+      model.loadSearchResultsPerPage(model.state.search.currentPage)
+    );
 
     // update bookmark bar
     bookmarkViews.update([...model.state.bookmarks].reverse());
