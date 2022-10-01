@@ -10,7 +10,7 @@ class AddRecipeView extends View {
 
   constructor() {
     super();
-    this._addToggleModalHandler();
+    // this._addToggleModalHandler();
   }
 
   toggleWindow() {
