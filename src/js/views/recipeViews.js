@@ -5,21 +5,6 @@ import { Fraction } from 'fractional';
 class RecipeView extends View {
   _parentEl = document.querySelector('.recipe');
   _errorMessage = "We couldn't find that recipe. Please try another one!";
-  _message;
-
-  renderMessage(message = this._message) {
-    const markup = `<div class="message">
-        <div>
-          <svg>
-            <use href="${icons}#icon-alert-triangle"></use>
-          </svg>
-        </div>
-        <p>${message}</p>
-      </div>`;
-
-    this._clear();
-    this._parentEl.insertAdjacentHTML('afterbegin', markup);
-  }
 
   addRenderHandler(handler) {
     // show event on load && hashchange event
