@@ -1,4 +1,4 @@
-import { API_KEY, API_URL, RESULT_PER_PAGE } from './config.js';
+import {  API_URL, RESULT_PER_PAGE } from './config.js';
 import { getJSON, sendJSON } from './helper.js';
 
 export const state = {
@@ -29,7 +29,7 @@ const createRecipeObject = function (data) {
 
 export const loadRecipe = async function (id) {
   try {
-    const data = await getJSON(`${API_URL}/${id}?key=${API_KEY}`);
+    const data = await getJSON(`${API_URL}/${id}`);
 
     state.recipe = createRecipeObject(data);
 
@@ -48,7 +48,7 @@ export const loadRecipe = async function (id) {
 export const loadSearchResults = async function (query) {
   try {
     state.search.query = query;
-    const data = await getJSON(`${API_URL}?search=${query}&key=${API_KEY}`);
+    const data = await getJSON(`${API_URL}?search=${query}`);
 
     state.search.results = data.data.recipes.map(recipe => {
       return {
@@ -132,7 +132,7 @@ export const uploadRecipe = async function (newRecipe) {
       title: newRecipe.title,
       ingredients,
     };
-    const data = await sendJSON(`${API_URL}?key=${API_KEY}`, recipe);
+    const data = await sendJSON(`${API_URL}`, recipe);
     state.recipe = createRecipeObject(data);
   } catch (err) {
     throw err;
